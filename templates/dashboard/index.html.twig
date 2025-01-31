@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table style="width:30%; border-collapse:collapse; font-family:Arial, sans-serif; border:1px solid #ccc;">
+        <tbody>
+        <tr>
+            <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Weather Description</th>
+            <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.weather.0.description }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Temperature (°C)</th>
+            <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.main.temp }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Feels Like Temperature (°C)</th>
+            <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.main.feels_like }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Pressure (hPa)</th>
+            <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.main.pressure }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Humidity (%)</th>
+            <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.main.humidity }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Wind Speed (m/s)</th>
+            <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.wind.speed }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Sunrise</th>
+            <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.sys.sunrise|date('H:i') }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Sunset</th>
+            <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.sys.sunset|date('H:i') }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
