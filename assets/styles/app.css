@@ -1,3 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-    background-color: skyblue;
+    background-image: url("/images/backgrounds/orange-coin.png");
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 70%, rgba(0, 0, 0, 0.37) 100%);
+    pointer-events: none;
+}
+
+.dashboard-button {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    min-width: 400px;
+    min-height: 100px;
+    transition: transform 0.3s ease;
+}
+
+.dashboard-button:hover {
+    transform: translateY(5px);
+}
+
+#weather-button {
+    background-image: url('/images/buttons/Weather-orange-300.png');
+}
+#news-button {
+    background-image: url('/images/buttons/News-blue-300.png');
+}
+#events-button {
+    background-image: url('/images/buttons/Events-purple-300.png');
+}
+#movies-button {
+    background-image: url('/images/buttons/Movies-red-300.png');
 }
