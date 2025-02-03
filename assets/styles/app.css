@@ -2,10 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'PixelFont';
+    src: url('/fonts/Minecraft.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PixelFont2';
+    src: url('/fonts/upheavtt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
-    background-image: url("/images/backgrounds/orange-coin.png");
+    background-image: url("/images/backgrounds/Orange-coin.png");
     background-repeat: repeat;
     background-size: auto;
+
+    font-family: 'PixelFont2', sans-serif;
 }
 
 body::after {
@@ -15,6 +32,8 @@ body::after {
     background: radial-gradient(circle, transparent 70%, rgba(0, 0, 0, 0.37) 100%);
     pointer-events: none;
 }
+
+/* dashboard page */
 
 .dashboard-button {
     display: inline-block;
@@ -41,4 +60,22 @@ body::after {
 }
 #movies-button {
     background-image: url('/images/buttons/Movies-red-300.png');
+}
+
+/* weather page */
+
+#weather-title {
+    background-image: url('/images/buttons/Weather-orange-300.png');
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    min-width: 400px;
+    min-height: 100px;
+}
+
+#error-msg {
+    font-family: 'PixelFont2', sans-serif;
+    color: white;
+    font-size: 40px
 }

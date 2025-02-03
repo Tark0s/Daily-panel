@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="flex flex-col items-center justify-center min-h-screen">
+
+        <!-- Logo -->
+        <div class="mb-8">
+            <img src="{{ asset('images/buttons/Weather-orange-300.png') }}" alt="Weather">
+        </div>
+
+        <div class="flex flex-row justify-around w-full">
+
+            {% if temperatureForecastData is defined and temperatureForecastData %}
+                <table class="table-auto w-1/5 rounded-lg shadow-lg mx-4 bg-green-200">
+                    <caption class="text-3xl font-bold text-green-800 mb-2">Temperature forecast</caption>
+                    <tbody>
+                        {% for temperature in temperatureForecastData %}
+                            <tr>
+                                <th class="text-left px-4 py-2 font-medium text-black bg-transparent">{{ temperature.date }}</th>
+                                <td class="text-green-700 px-4 py-2 border-l border-green-500 bg-transparent">{{ temperature.min }} / {{ temperature.max }} °C </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {%  else %}
+                <p id="error-msg" class="text-gray-500 mt-4">No air pollution data to display.</p>
+            {% endif %}
+
+
+        {% if weatherData is defined and weatherData %}
+                <table class="table-auto w-1/5 rounded-lg shadow-lg mx-4 bg-amber-100">
+                    <caption class="text-3xl font-bold text-amber-800 mb-2">Today</caption>
+                    <tbody>
+                    <tr>
+                        <th class="text-left px-4 py-2 font-medium text-black bg-transparent">Weather Description</th>
+                        <td class="text-amber-700 px-4 py-2 border-l border-amber-500 bg-transparent">{{ weatherData.weather.0.description }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left px-4 py-2 font-medium text-black bg-transparent">Temperature</th>
+                        <td class="text-amber-700 px-4 py-2 border-l border-amber-500 bg-transparent">{{ weatherData.main.temp }}°C</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left px-4 py-2 font-medium text-black bg-transparent">Wind Speed</th>
+                        <td class="text-amber-700 px-4 py-2 border-l border-amber-500 bg-transparent">{{ weatherData.wind.speed }} m/s</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left px-4 py-2 font-medium text-black bg-transparent">Feels Like Temperature</th>
+                        <td class="text-amber-700 px-4 py-2 border-l border-amber-500 bg-transparent">{{ weatherData.main.feels_like }}°C</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left px-4 py-2 font-medium text-black bg-transparent">Pressure</th>
+                        <td class="text-amber-700 px-4 py-2 border-l border-amber-500 bg-transparent">{{ weatherData.main.pressure }} hPa</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left px-4 py-2 font-medium text-black bg-transparent">Humidity</th>
+                        <td class="text-amber-700 px-4 py-2 border-l border-amber-500 bg-transparent">{{ weatherData.main.humidity }}%</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left px-4 py-2 font-medium text-black bg-transparent">Sunrise</th>
+                        <td class="text-amber-700 px-4 py-2 border-l border-amber-500 bg-transparent">{{ weatherData.sys.sunrise|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left px-4 py-2 font-medium text-black bg-transparent">Sunset</th>
+                        <td class="text-amber-700 px-4 py-2 border-l border-amber-500 bg-transparent">{{ weatherData.sys.sunset|date('H:i') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+        {%  else %}
+            <p id="error-msg" class="text-gray-500 mt-4">No weather data to display.</p>
+        {% endif %}
+
+        {% if airPollutionData is defined and airPollutionData %}
+                <table class="table-auto w-1/5 rounded-lg shadow-lg mx-4 bg-cyan-100">
+                    <caption class="text-3xl font-bold text-cyan-800 mb-2">Air pollution</caption>
+                    <tbody>
+                    <tr>
+                        <th class="text-cyan-800 text-left px-4 py-2 font-medium bg-transparent">Co</th>
+                        <td class="text-cyan-500 px-4 py-2 border-l border-cyan-500 bg-transparent">{{ airPollutionData.list.0.components.co }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-cyan-800 text-left px-4 py-2 font-medium bg-transparent">No</th>
+                        <td class="text-cyan-500 px-4 py-2 border-l border-cyan-500 bg-transparent">{{ airPollutionData.list.0.components.no }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-cyan-800 text-left px-4 py-2 font-medium bg-transparent">No2</th>
+                        <td class="text-cyan-500 px-4 py-2 border-l border-cyan-500 bg-transparent">{{ airPollutionData.list.0.components.no2 }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-cyan-800 text-left px-4 py-2 font-medium bg-transparent">O3</th>
+                        <td class="text-cyan-500 px-4 py-2 border-l border-cyan-500 bg-transparent">{{ airPollutionData.list.0.components.o3 }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-cyan-800 text-left px-4 py-2 font-medium bg-transparent">So2</th>
+                        <td class="text-cyan-500 px-4 py-2 border-l border-cyan-500 bg-transparent">{{ airPollutionData.list.0.components.so2 }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-cyan-800 text-left px-4 py-2 font-medium bg-transparent">Pm2-5</th>
+                        <td class="text-cyan-500 px-4 py-2 border-l border-cyan-500 bg-transparent">{{ airPollutionData.list.0.components.pm2_5 }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-cyan-800 text-left px-4 py-2 font-medium bg-transparent">Pm10</th>
+                        <td class="text-cyan-500 px-4 py-2 border-l border-cyan-500 bg-transparent">{{ airPollutionData.list.0.components.pm10 }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-cyan-800 text-left px-4 py-2 font-medium bg-transparent">Nh3</th>
+                        <td class="text-cyan-500 px-4 py-2 border-l border-cyan-500 bg-transparent">{{ airPollutionData.list.0.components.nh3 }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+        {%  else %}
+            <p id="error-msg" class="text-gray-500 mt-4">No air pollution data to display.</p>
+        {% endif %}
+        </div>
+
+        <div class="mt-8">
+            <p class="text-4xl text-amber-800">{{ weatherData.city }}</p>
+        </div>
+    </div>
+{% endblock %}

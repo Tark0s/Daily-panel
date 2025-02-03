@@ -1,45 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% if weather_data is defined and weather_data %}
-        <table class="w-1/3 border-collapse font-sans border border-red-900">
-            <tbody>
-            <tr>
-                <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Weather Description</th>
-                <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.weather.0.description }}</td>
-            </tr>
-            <tr>
-                <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Temperature (°C)</th>
-                <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.main.temp }}</td>
-            </tr>
-            <tr>
-                <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Feels Like Temperature (°C)</th>
-                <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.main.feels_like }}</td>
-            </tr>
-            <tr>
-                <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Pressure (hPa)</th>
-                <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.main.pressure }}</td>
-            </tr>
-            <tr>
-                <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Humidity (%)</th>
-                <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.main.humidity }}</td>
-            </tr>
-            <tr>
-                <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Wind Speed (m/s)</th>
-                <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.wind.speed }}</td>
-            </tr>
-            <tr>
-                <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Sunrise</th>
-                <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.sys.sunrise|date('H:i') }}</td>
-            </tr>
-            <tr>
-                <th style="text-align:left; padding:8px; background-color:#f2f2f2; border:1px solid #ddd;">Sunset</th>
-                <td style="padding:8px; border:1px solid #ddd;">{{ weather_data.sys.sunset|date('H:i') }}</td>
-            </tr>
-            </tbody>
-        </table>
-    {% endif %}
-
     <div class="flex flex-col items-center justify-center min-h-screen">
         <!-- Logo -->
         <div class="mb-8">
@@ -47,15 +8,13 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4">
-{#            <button class="weather-button"></button>#}
-{#            <button class="news-button"></button>#}
-{#            <button class="weather-button"></button>#}
-{#            <button class="weather-button"></button>#}
+            <a href="{{ path('weather-today') }}">
+                <button id="weather-button" class="dashboard-button"></button>
+            </a>
 
-            <button id="weather-button" class="dashboard-button"></button>
+            <button id="movies-button" class="dashboard-button"></button>
             <button id="news-button" class="dashboard-button"></button>
             <button id="events-button" class="dashboard-button"></button>
-            <button id="movies-button" class="dashboard-button"></button>
         </div>
     </div>
 
